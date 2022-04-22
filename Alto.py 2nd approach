@@ -1,24 +1,76 @@
+#This is the second approach to make the ALTO tensor client centric. 
 
+# Still need to add many information if we imnplement the Alto tensor with this process
+
+
+import os
+import sys
+import numpy as np
+from tensorflow import SparseTensor
+import time
+# chosse the number of iteration
+max_iters = 1500
+rank = 3
+npartitions = mp.cpu_count()
+
+# size we want to alocate
+ITYPE_SIZE = np.uint(32)
+FTYPE_SIZE = np.uint(32)
+
+# size of ALTO mask
+ALTO_MASK_SIZE = np.uint(32)
+MIN_FIBER_REUSE = np.uint(4)
+# still need to add some parameter
+def clz(num):
+    tracker = ull1 << np.uint64(63)
+    cnt = np.uint(0)
+    while not (num & tracker):
+        cnt += np.uint(1)
+        tracker = tracker >> ull1
+    return cnt
+
+
+def pdep(src, mask):
+    res = np.uint64(0)
+    bits = np.uint64(1)
+    while mask != 0:
+        if src & bits:
+            res |= mask & -mask
+        mask &= mask - np.uint64(1)
+        bits = bits << u1
+    return res
+
+
+def pext(src, mask):
+    res = np.uint64(0)
+    bits = np.uint64(1)
+    while mask != 0:
+        if src & mask & -mask:
+            res |= bits
+        mask &= mask - np.uint64(1)
+        bits = bits << u1
+    return res
+    #main Alto class
 class AltoTensor:
-    
-    def __init__(self, spt, modes, nprtn):
-        
+   
         #The assert keyword lets you test if a condition in your code returns
         #True, if not, the program will raisean AssertionError. You can write a message
         #to be written if the code returns False
+def __init__(self, tensor):
+        # defining the all the parameter of Alto tensor
+        self.dims = np.array(tensor.shape, dtype=np.uint64)
+        self.nmode = np.uint64(tensor.shape.ndims)
+        self.nnz = np.uint64(tensor.values.shape[0])
+        self.nprtn = np.uint64(npartitions)
+        self.prtn_ptr = []
+        self.prtn_intervals = [() for _ in range(self.nmode * self.nprtn)]
+        self.cr_masks = []
+        self.alto_cr_mask = None
+        self.vals = np.array(tensor.values)
+        self.idx = []
+        self.alto_mask = None
         
-        assert spt.nmodes <= MAX_NUM_MODES
-        nmode = spt.nmodes
-        nnz = spt.nnz
-        self.nmode = nmode
-        self.nprtn = nprtn
-        self.dims = []
-        
-        assert self.dims
-        self.dims = spt.dims.copy()
-        self.mode_masks = [0 for i in range nmode]
-        
-        assert self.mode_masks
+        assert self.mode_masks = []
         self.mode_pos = []
         assert self.mode_pos
 
@@ -74,8 +126,8 @@ class AltoTensor:
         index=self.idx
         new_index=0
         for n in range(0,nmode)
-        pass (line 222)
-        pass (line 223)
+        pass
+        pass 
 
         self.idx=new_index
 
@@ -88,6 +140,26 @@ class AltoTensor:
         for n in range (0,nmode)
         
        **The iterators that will be used are as follows**
+  def linearize(self, old_idx, nmode, mode_masks, sidx, eidx):
+        res = np.zeros(eidx - sidx, dtype=np.uint64)
+        for idx in range(sidx, eidx):
+            alto = np.uint64(0)
+            for j in range(nmode):
+                alto |= pdep(old_idx[idx][j], mode_masks[j])
+            res[sidx - idx] = alto
+        return res
+  #still need to work on
+ 
+    def setup_packed_alto(self):
+    
+    
+    
+    
+    
+    def sort_alto(self):
+        permutation = self.idx.argsort()
+        self.idx = self.idx[permutation]
+        self.vals = self.vals[permutation]
         
     def __del__:(self):
         del self.dims
@@ -105,10 +177,10 @@ class AltoTensor:
     def __create_da_mem__(
 
         
-
+#somehow implemented in rough draft but fully not functional
     def set(self, indices, value):
         pass
-
+#somehow implemented but fully not functional
     def get(self, indices):
         pass
 
@@ -125,6 +197,29 @@ class AltoTensor:
 
     
     # another iterator for nnz
+    # reading the tensor file
+def read(file):
+	count=0
+	with open(file, 'r') as reader:
+		# Create the tensor
+		tns = AltoTensor()
+
+		x=0
+		for row in reader:
+
+			count=count+1
+			#if count % 1000 == 0:
+			row = row.split()
+
+			val = float(row.pop())
+
+			idx = [int(i) for i in row]
+			x=x+1
+
+			tns.set(idx, val)
+
+	reader.close()
+	return tns
 
 def main():
     x = ALtoTensor([4, 5, 3]) # constructpr
