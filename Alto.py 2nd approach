@@ -1,1 +1,133 @@
 
+class AltoTensor:
+    
+    def __init__(self, spt, modes, nprtn):
+        
+        #The assert keyword lets you test if a condition in your code returns
+        #True, if not, the program will raisean AssertionError. You can write a message
+        #to be written if the code returns False
+        
+        assert spt.nmodes <= MAX_NUM_MODES
+        nmode = spt.nmodes
+        nnz = spt.nnz
+        self.nmode = nmode
+        self.nprtn = nprtn
+        self.dims = []
+        
+        assert self.dims
+        self.dims = spt.dims.copy()
+        self.mode_masks = [0 for i in range nmode]
+        
+        assert self.mode_masks
+        self.mode_pos = []
+        assert self.mode_pos
+
+        self.idx = []
+        
+        assert self.idx
+        self.vals = []
+        
+        assert self.vals
+        self.prtn_ptr=[]
+        
+        assert self.prtn_ptr
+        self.prtn_intervals=[]
+        
+        assert self.prtn_intervals
+        self.cr_masks=[0 for i in range nmode]
+        
+        assert self.cr_masks
+
+        self.prtn_id=[0 for i in range nprtn]
+        assert self.prtn_id
+
+        
+        self.prtn_masks[0 for i in range nprtn]
+        
+        assert self.prtn_masks
+        self.prtn_mode_masks[0 for i in range nprtn*nmode]
+        
+        assert self.prtn_mode_masks
+
+        
+        ALTO_MASKS[MAX_NUM_MODES]
+        for n in range (0 , nmode)
+        ALTO_MASKS=self.mode_masks
+
+        for i in range (0,nnz)
+        alto=0
+
+        self.vals[i]=spt.vals[i]
+        for j in range (0, nmode)
+        pass(line 187)
+
+        for j in range(0,nmode)
+        mode_idx=0
+        pass (line 193)
+        assert mpode_idx= spt.cidx(pass)
+
+        ALTO_POS[MAX_NUM_MODES]
+        for n in range(o,nmode)
+        ALTO_POS=self.mode_pos
+
+        for i in range (0,nnz)
+        index=self.idx
+        new_index=0
+        for n in range(0,nmode)
+        pass (line 222)
+        pass (line 223)
+
+        self.idx=new_index
+
+        for n in range(0,nmode)
+        num_bits=[]
+        self.mode_masks=[]
+        pass(line 230)
+    
+
+        for n in range (0,nmode)
+        
+       **The iterators that will be used are as follows**
+        
+    def __del__:(self):
+        del self.dims
+        del self.mode_masks
+        del self.mode_pos
+        del self.idx
+        del self.prtn_ptr
+        del self.prtn_intervals
+        del delf.cr_masks
+        del self.prtn_id
+        del self.prtn_masks
+        del self.prtn_mode_msks
+        del(self)
+
+    def __create_da_mem__(
+
+        
+
+    def set(self, indices, value):
+        pass
+
+    def get(self, indices):
+        pass
+
+    def clear(self):
+        pass
+
+    def get_slice(self, starting_indices, ending_indices):
+        pass
+
+    def __iter__:
+
+
+    def __next__:
+
+    
+    # another iterator for nnz
+
+def main():
+    x = ALtoTensor([4, 5, 3]) # constructpr
+    del x # deconstructor
+    val = x.get([3,4,6])
+    x.set([3,4,6], 45.0)
