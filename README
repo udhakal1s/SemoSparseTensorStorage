@@ -1,4 +1,4 @@
-#Sparse Tensor Storage Project
+# Sparse Tensor Storage Project
 
 The purpose of this application is to allow users to read and import data,
 which will be stored using Alto and Hicoo. Hicoo is a form of hierarchial storage.
