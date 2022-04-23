@@ -9,3 +9,9 @@ adaptive linearized storage format for sparse tensors. It will generate lineariz
 indexs that map nonzero values of the high dimensional matrix. Users will be able 
 to choose if they want to store data as double, int, or float. The application will 
 utilize these python modules and libraries, os and numpy.
+
+Interfaces:
+This program will utilize the python programming language. It will be using PyCharm v2021.3.2 and will document all progress and contents on this GitHub Repository. 
+
+Data Structures:
+These forms of SparseTensor storage will use multidemensional arrays using the indexs as a method of navigating to a specified location of the array. 
